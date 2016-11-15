@@ -10,15 +10,19 @@ R tools to retrieve, tabulate and visualize data from Statistics Canada's CANSIM
 
 [CANSIM](http://www5.statcan.gc.ca/cansim/a01?lang=eng&p2=1) is the comprehensive database of socio-economic statistics, maintained by Statistics Canada. The database contains a wide variety of data series, from the familiar ([unemployment rates from the Labour Force Survey](http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=2820087&&pattern=&stByVal=1&p1=1&p2=31&tabMode=dataTable&csid=) and the [Consumer Price Index](http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=3260020&&pattern=&stByVal=1&p1=1&p2=31&tabMode=dataTable&csid=)) to more obscure topics (total sales by vending machine operators; vector v101256214 in Table 080-0028).
 
-The University of Toronto Map & Data Library has created a [CANSIM guide](http://data.library.utoronto.ca/cansim-guide), helping you navigate through the system to find the series you are seeking.
+**CANSIM tutorials**
 
-### Usage
+- Statistics Canada has a [short step-by-step tutorial](http://www.statcan.gc.ca/about-apercu/video/cansim-trans-eng.html) on finding and saving data from CANSIM.
+
+- The University of Toronto Map & Data Library has created a [CANSIM guide](http://data.library.utoronto.ca/cansim-guide), helping you navigate through the system to find the series you are seeking.
+
+## Usage
 
 
-#### Data
+### Data
 
 
-#### Code
+### Code
 
 **NHPI** - New Housing Price Index
 

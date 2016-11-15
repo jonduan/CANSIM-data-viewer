@@ -23,17 +23,6 @@ thedata <- read_csv("03270046-eng.csv")
 class(thedata$Ref_Date)
 thedata$DATE <- as.Date(as.yearmon(thedata$Ref_Date, format="%Y/%m"))
 #
-# (unnecessary--file already long)
-#thedata_long <- melt(thedata, id="DATE", measure=c("RetailUNADJ",  "RetailSEAS"))
-#head(thedata_long)
-#
-# reshape the data into long format
-#class(startdate)
-#thedata_long <- subset(thedata, DATE > startdate)
-#head(thedata_long)
-#thedata_long <- melt(thedata_long, id="DATE", measure=c("RetailUNADJ",  "RetailSEAS"), variable="ADJ")
-#head(thedata_long)
-#
 
 startdate <- as.Date("2007-01-01")
 
@@ -78,6 +67,7 @@ dataplot2 <- dataplot +
 #
 dataplot2 
 
+# experiments with ggplot2's new subtitle and caption options
 
 # add titles / X-Y axis labels
 dataplot2 +
@@ -101,7 +91,7 @@ dataplot2 +
        caption = "Source: Statistics Canada", 
        x = NULL, y = "NHPI") 
 
-
+# final version
 # add titles / X-Y axis labels / caption
 dataplot2 +
   labs(title = "New Housing Price Index, Canada & B.C.",

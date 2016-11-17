@@ -1,4 +1,4 @@
-# Get historical unemployment data from the Labour Force Survey
+# Get historical unemployment data from the Labour Force Survey and create interactive data visualization
 
 #---- Load necessary packages #----
 
@@ -13,6 +13,7 @@ library(car) # package provides a good way to 'recode' values
 library(rmarkdown)
 library(rCharts) # package in development that can be used to create interactive plots 
 library(xts)
+library(dygraphs)
 
 
 #---- Download table from CANSIM and save it in the environment as a data frame object #----
@@ -55,4 +56,26 @@ lineUR
 
 
 
-#---- Plot using dygraph #----
+#---- Plot unemployment rate using dygraphs package #----
+
+# In order to make the data compatible with dygraphs, we need to first turn it "wide," 
+## followed by turning it into a time series object; need 'tidyr' and 'xts' packages for that
+
+wideMonthlyLFS1 <- monthlyLFS1 %>% select(Date,Region,UnRate) %>% spread(Region,UnRate) # 'spread' function is from tidyr
+wideMonthlyLFS1 <- xts(wideMonthlyLFS1, as.Date(wideMonthlyLFS1$Date, format='%y-%m-%d')) # turn the data frame to time series obj.
+
+dygraph(wideMonthlyLFS1, main = "Unemployment Rate by Region") %>%
+  dyRangeSelector() %>%
+  dyShading(from = "1990-1-1", to = "1991-1-1") %>%
+  dyShading(from = "2008-7-1", to = "2009-4-1") %>%
+  dyAxis("y", label = "Unemp. Rate (%)") %>%
+  #dyEvent(input$RefMonth, "Reference Month", labelLoc = "bottom") %>%
+  #dyLegend(show = "follow") %>%
+  dyOptions(colors = RColorBrewer::brewer.pal(8, "Set2"), drawGrid = FALSE) %>%
+  dyHighlight(highlightCircleSize = 5,
+              highlightSeriesBackgroundAlpha = 0.2,
+              hideOnMouseOut = TRUE)
+
+# The above graph is very unsightly, but the intention is to show the numerous options and the excellent performance of dygraphs
+## for graphing large time series datasets 
+

@@ -48,10 +48,11 @@ barUR
 lineUR <-nPlot(x = 'Date', y= 'UnRate', data = monthlyLFS1 %>% filter(Region=="British Columbia"),
                type = 'lineChart')
 lineUR$yAxis(axisLabel = "%", width=40)
-lineUR$xAxis(tickFormat =   "#!
-      function(d) {return d3.time.format('%Y-%m-%d')(new Date(d*1000*3600*24));}
-    !#",
-    rotateLabels = -30) # javascript code to format the dates properly
+lineUR$xAxis(tickFormat="#!function(d) 
+             {return d3.time.format.utc('%Y-%m-%d')
+             (new Date(d * 24 * 60 * 60 * 1000));}!#") # javascript code to format the dates properly
 lineUR
 
 
+
+#---- Plot using dygraph #----

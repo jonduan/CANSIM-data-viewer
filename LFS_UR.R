@@ -14,6 +14,8 @@ library(rmarkdown)
 library(rCharts) # package in development that can be used to create interactive plots 
 library(xts)
 library(dygraphs)
+library(plotly)
+library(ggiraph)
 
 
 #---- Download table from CANSIM and save it in the environment as a data frame object #----
@@ -79,6 +81,45 @@ dygraph(wideMonthlyLFS1, main = "Unemployment Rate by Region") %>%
 # The above graph is very unsightly, but the intention is to show the numerous options and the excellent performance of dygraphs
 ## for graphing large time series datasets 
 
+
+#---- Make ggplot2 interactive with ggiraph #----
+
+# ggplot2 is the most well supported, preeminent graphical engine within the R community. As such, it is advantageous for myriad 
+## reasons to retain its syntax and, if needed, add elements of interactivity on top of it. 
+## One package that enables this process is "ggiraph"
+
+# Unemployment rate by region, using only ggplot2
+
+ggplot(data=monthlyLFS1 %>% filter(Date == "2016-10-01"), aes(x=Region, y=UnRate, fill=Region)) + 
+  geom_bar(stat="identity") +
+  ylab("Unemployment Rate (%)") + 
+  xlab("Region") + 
+  theme(panel.background = element_blank(),
+        axis.text.x = element_text(angle=60, vjust=0.5, size = 10),
+        legend.position="none",
+        axis.ticks = element_blank()) +
+  scale_fill_brewer(palette="Set3") + 
+  ggtitle("Unemployment Rate \n October 2016")
+
+# Now the same graph, but this time using ggplot2 in conjunction with ggiraph
+
+gg_bar <- ggplot(data=monthlyLFS1 %>% filter(Date == "2016-10-01"), 
+                 aes(x=Region, y=UnRate, fill=Region)) + 
+  geom_bar_interactive(stat="identity", aes(data_id = Region, tooltip = as.character(UnRate))) +
+  ylab("Unemployment Rate (%)") + 
+  xlab("Region") + 
+  theme(panel.background = element_blank(),
+        axis.text.x = element_text(angle=60, vjust=0.5, size = 10),
+        legend.position="none",
+        axis.ticks = element_blank()) +
+  scale_fill_brewer(palette="Set3") + 
+  ggtitle("Unemployment Rate \n October 2016")
+
+ggiraph(code = {print(gg_bar)})
+
+## In the above code, a minimal amount of code was changed to introduce "hover" interactivity to the existing ggplot2 graph.
+## `geom_bar` was replaced with `geom_bar_interactive`, and some additional arguments were added to define the tooltip. 
+## In addition, the plot was saved as an object in the environment, which was then called in the `ggiraph()` function.
 
 #---- Generate interactive table using DT package #----
 

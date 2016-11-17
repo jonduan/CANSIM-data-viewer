@@ -28,7 +28,9 @@ R tools to retrieve, tabulate and visualize data from Statistics Canada's CANSIM
 
 - [NHPI.R](NHPI.R) -- R script for data carpentry (including date manipulation) using `dplyr` and visualization using `ggplot2` (v. 2.2.0)
 
-- [LFS_UR.R](LFS_UR.R) -- R script for using `CANSIM2R` package to download CANSIM tables, interactive data visualization with `rCharts` and `dygraphs`, and generating interactive tables using `DT` package.
+**LFS** - Labour Force Survey
+
+- [LFS_UR.R](LFS_UR.R) -- R script for using `CANSIM2R` package to download CANSIM tables; interactive data visualization with `rCharts`, `dygraphs` and `ggiraph`; and interactive tables using `DT` package.
 
 ---
 

@@ -79,3 +79,28 @@ dygraph(wideMonthlyLFS1, main = "Unemployment Rate by Region") %>%
 # The above graph is very unsightly, but the intention is to show the numerous options and the excellent performance of dygraphs
 ## for graphing large time series datasets 
 
+
+#---- Generate interactive table using DT package #----
+
+# A very basic example of an interactive table using the DT package.
+## Lots of options to customize functionalities. Allows for useful tasks such as sorting by unemployment rate. 
+### In general, the package is at its most useful when embedded within a shiny application. 
+
+datatable(monthlyLFS1 %>% 
+                      filter(Date=="2016-10-01") %>%
+                      select(Date,Region,UnRate),
+                    colnames = c('Unemployment Rate' = 'UnRate'), # headers
+                    rownames = FALSE,
+                    extensions = 'Buttons',
+                    class = 'cell-border stripe hover', #styling options
+                    options=list(
+                      dom='Bt ', # only show buttons and table, hence Bt
+                      pageLength = 11, # the maximum number of elements to show; default = 10
+                      buttons = 
+                        list('copy', 'print', list(
+                          extend = 'collection',
+                          buttons = c('csv', 'excel'),
+                          text = 'Download Data'
+                                                  ))
+                                ) 
+                      )

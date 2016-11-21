@@ -73,9 +73,8 @@ thedata_long
 
 **Plot: Canada and British Columbia**
 
-
-# PLOT!
-# basic
+```{r}
+### basic
 ggplot(thedata_long, aes(x=Ref_Date, y=Value, group=GEO)) + 
   geom_line()
 #
@@ -118,6 +117,7 @@ dataplot2 +
        caption = "Source: Statistics Canada (Labour Force Survey, CANSIM table 282-0211)", 
        x = NULL, y = "percentage")
 
+```
 
 
 ---

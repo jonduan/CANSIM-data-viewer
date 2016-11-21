@@ -26,6 +26,9 @@ Some of these R scripts rely on the [`CANSIM2R`](https://cran.r-project.org/web/
 
 ### Data
 
+Data downloaded and/or saved in this repository is covered under the [Statistics Canada Open Licence Agreement](http://www.statcan.gc.ca/eng/reference/licence).
+
+Details about individual data files are specified in the R, RMD, and MD files that reference them.
 
 ### Code
 

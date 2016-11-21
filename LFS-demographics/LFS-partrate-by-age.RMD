@@ -9,20 +9,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-
----
-
 ## Seniors in the workforce
 
 It has been reported that the labour force participation of older Canadians has been rising ... is this the case?
 
 **data sources**
+
 CANSIM Table 282-0001
 [Labour force survey estimates (LFS), by sex and detailed age group, unadjusted for seasonality: monthly]
 (http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=2820001&pattern=labour+force+survey&tabMode=dataTable&srchLan=-1&p1=1&p2=-1)
@@ -31,6 +23,8 @@ CANSIM Table 282-0001
 CANSIM Table 282-0002
 [Labour force survey estimates (LFS), by sex and detailed age group, unadjusted for seasonality: annual](http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=2820002&pattern=labour+force+survey&tabMode=dataTable&srchLan=-1&p1=1&p2=-1)
 
+
+```{r}
 
 # LFS
 #
@@ -197,8 +191,6 @@ png("plot_labforpart_BC_65plus.png", width=1024, height=768, res=120)
 plot(dataplot2)
 dev.off()
 
-
-```
 
 ```
 

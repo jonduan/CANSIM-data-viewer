@@ -13,15 +13,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 It has been reported that the labour force participation of older Canadians has been rising ... is this the case?
 
-**data sources**
+**Data source**
+
+Source: Statistics Canada, Labour Force Survey. Reproduced and distributed on an "as is" basis with the permission of Statistics Canada.
 
 CANSIM Table 282-0001
 [Labour force survey estimates (LFS), by sex and detailed age group, unadjusted for seasonality: monthly]
-(http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=2820001&pattern=labour+force+survey&tabMode=dataTable&srchLan=-1&p1=1&p2=-1)
+(http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=2820001&pattern=labour+force+survey&tabMode=dataTable&srchLan=-1&p1=1&p2=-1) (downloaded 2016-11-21)
 
 
 CANSIM Table 282-0002
-[Labour force survey estimates (LFS), by sex and detailed age group, unadjusted for seasonality: annual](http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=2820002&pattern=labour+force+survey&tabMode=dataTable&srchLan=-1&p1=1&p2=-1)
+[Labour force survey estimates (LFS), by sex and detailed age group, unadjusted for seasonality: annual](http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=2820002&pattern=labour+force+survey&tabMode=dataTable&srchLan=-1&p1=1&p2=-1) (downloaded 2016-11-21)
+
+
+[Statistics Canada Open License Agreement](http://www.statcan.gc.ca/eng/reference/licence)
+
 
 
 ```{r}

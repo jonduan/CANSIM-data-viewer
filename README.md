@@ -37,6 +37,8 @@ Some of these R scripts rely on the [`CANSIM2R`](https://cran.r-project.org/web/
 
 - [LFS_UR.R](LFS_UR.R) -- R script for using `CANSIM2R` package to download CANSIM tables; interactive data visualization with `rCharts`, `dygraphs` and `ggiraph`; and interactive tables using `DT` package.
 
+- [LFS-demographics](https://github.com/bcgov/CANSIM-data-viewer/tree/master/LFS-demographics) -- a variety of R scripts that explore different demographic aspects of the labour force, including women with children and older workers.
+
 ---
 
 ### Getting Help or Reporting an Issue

@@ -29,6 +29,10 @@ CANSIM Table 282-0002
 [Statistics Canada Open License Agreement](http://www.statcan.gc.ca/eng/reference/licence)
 
 
+### Background
+
+"The employment rate for seniors has more than doubled since 1988, from 6.7 per cent to 13.2 per cent." [Seniors and the generation spending gap](http://www.macleans.ca/society/life/seniors-and-the-generation-spending-gap/)
+
 
 ```{r}
 

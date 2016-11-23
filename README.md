@@ -41,7 +41,7 @@ Details about individual data files are specified in the R, RMD, and MD files th
 - [LFS_UR.R](LFS_UR.R) -- R script for using `CANSIM2R` package to download CANSIM tables; interactive data visualization with `rCharts`, `dygraphs` and `ggiraph`; and interactive tables using `DT` package.
 
 - [interactiveDataVisual.Rmd](interactiveDataVisual.Rmd) & [interactiveDataVisual.nb.html](interactiveDataVisual.nb.html) -- R Notebook and an HTML equivalent detailing the code in the `LFS_UR` script file. <br>
-View the HTML file online [here](https://cdn.rawgit.com/bcgov/CANSIM-data-viewer/b8335856961ac2ae5879f52d6bbe3b08b9e4d55f/interactiveDataVisual.nb.html)
+View the HTML file online [here](https://cdn.rawgit.com/bcgov/CANSIM-data-viewer/6d049cf9e919912f8fd185dc4b8e025671d61ae3/interactiveDataVisual.nb.html)
 
 - [LFS-demographics](https://github.com/bcgov/CANSIM-data-viewer/tree/master/LFS-demographics) -- a variety of R scripts that explore different demographic aspects of the labour force, including women with children and older workers.
 

@@ -7,7 +7,7 @@ output:
 
 This notebook is intended to showcase the multitude of options that are available to create interactive data visualization with R. In addition, there is a brief section in the beginning meant to display a fairly straightforward method of downloading and utilizing data from CANSIM. The data being utilized comes from Statistics Canada's monthly "Labour Force Survey" (LFS). Actual application of anything detailed in here is not limited to a single type of dataset. 
 
-In general, the list of methods and packages is in no way meant to be exhaustive. Moreover, the code attached is not elaborated upon in tremendous detail. The assumption is that enough information is provided that it anyone unfamiliar with the specific packages (but not unfamiliar with R as a whole) can quickly grasp the concept and proceed to play around with the code to get a sense of how they can utilize these packages for real-world applications. All the packages and functions mentioned here have varying degrees of documentation and numerous examples online. In most cases, a simple Google search on the name of the package can instantly provide anyone with a great deal of useful information. 
+In general, the list of methods and packages is in no way meant to be exhaustive. Moreover, the code attached is not elaborated upon in tremendous detail. The assumption is that enough information is provided that anyone unfamiliar with the specific packages (but not unfamiliar with R as a whole) can quickly grasp the concept and proceed to play around with the code to get a sense of how they can utilize these packages for real-world applications. All the packages and functions mentioned here have varying degrees of documentation and numerous examples online. In most cases, a simple Google search on the name of the package can instantly provide anyone with a great deal of useful information. 
 
 Lastly, all of the packages and their resultant outputs are perfectly useful as standalone objects (or embedded within an R Markdown file as they are in case of this document). However, they can be rendered even more useful as parts of `Shiny` applications. The user-input fields built into `Shiny` apps can be used to add an additional layer of interactivity to all of data visualizations showcased in this document. 
 
@@ -33,13 +33,13 @@ library(ggiraph)   # turns ggplot2 output into interactive plots
 
 ## Access CANSIM data
 
-The package "CANSIM2R" has two main functions; 'getCANSIM()' is used to extract a single table from CANSIM, while 'mergeCANSIM(c(,))' is used to extract and merge multiple tables on key variables at once. In this instance, 'getCANSIM()' is being used to download table `282-0087` from CANSIM and it is then being saved in the environment as a dataframe object
+The package "CANSIM2R" has two main functions; `getCANSIM()` is used to extract a single table from CANSIM, while `mergeCANSIM(c(,))` is used to extract and merge multiple tables on key variables at once. In this instance, `getCANSIM()` is being used to download table `282-0087` from CANSIM and it is then being saved in the environment as a dataframe object
 
 ```{r, message=FALSE}
 monthlyLFS <- getCANSIM(2820087)    
 ```
 
-After downloading and saving the table, it is useful to generate a metadata file in order to easily see what each column of the downloaded data represents. The metadata in this instance is simply a dataframe, with the vector numbers of the downloaded table in one column and the associated descriptive labels in the other. 
+After downloading and saving the table, it is useful to generate a metadata file in order to more easily see what each column of the downloaded data represents. The metadata in this instance is simply a dataframe, with the vector numbers of the downloaded table in one column and the associated descriptive labels in the other. 
 
 ```{r}
 metadataMonthlyLFS <- data.frame(colnames(monthlyLFS),label(monthlyLFS))
@@ -55,7 +55,7 @@ monthlyLFS$Date <- as.Date(as.yearmon(monthlyLFS$t,format="%Y/%m"))
 
 At this point, a seperate dataframe can be created by selecting only the fields that have been determined to be of relevance to the task at hand. In this instance, the only information needed is data on seasonally adjusted unemployment rate. By glancing at the metadata frame, it can be determined that vector `V922` is the specific variable of interest. In the code below, the columns are being renamed as well for better readability. 
 
-```{r}
+```{r, message = FALSE}
 monthlyLFS1 <- monthlyLFS %>% select(Date,i,V922)  
 monthlyLFS1 <- rename(monthlyLFS1,UnRate=V922)
 monthlyLFS1 <- rename(monthlyLFS1,Region=i)
@@ -68,7 +68,7 @@ head(monthlyLFS1)
 
 ## Interactive data visualization with ggplot2
 
-`ggplot2` is considered to be the most widely used and the most extensively developed graphing package for R. There are countless helpful resources and numerous examples online that can help one quickly grasp at least the basics of data visualization with `ggplot2`. The following is a simple example that utilizes previously downloaded data on unemployment rate.  
+`ggplot2` is the most widely used and the most extensively developed graphing package for R. There are countless helpful resources and numerous examples online that can help one quickly grasp at least the basics of data visualization with `ggplot2`. The following is a simple example that utilizes previously downloaded data on unemployment rate.  
 
 ```{r}
 # Unemployment rate by region
@@ -105,19 +105,19 @@ gg_bar <- ggplot(data=monthlyLFS1 %>% filter(Date == "2016-10-01"),
 ggiraph(code = {print(gg_bar)},  height_svg = 4, width_svg = 6)
 ```
 
-In the example above, tooltips are added to the existing bar chart. The tooltips are used to display the unemployment rate for a given province when the mouse pointer is hovered over a bar. This added functionality requires very little modification to the existing code. `geom_bar` is replaced with `geom_bar_interactive`, and some additonal arguments are added within to speficfy the values to display while hovering. In addition, the function `ggiraph` is utilized to output the chart.  
+In the example above, tooltips are added to the existing bar chart. The tooltips are used to display the unemployment rate for a given province when the mouse pointer is hovered over a bar. This added functionality requires very little modification to the existing code. `geom_bar` is replaced with `geom_bar_interactive`, and some additonal arguments are added within to specify the values to display while hovering. In addition, the function `ggiraph` is utilized to output the chart.  
 
 ## Interactive data visualization with JavaScript libraries
 
 Most dynamic and interactive data visualizations online are produced through JavaScript. There is extensive literature on the subject matter, and new or existing libraries are constantly under development. 
 
-Due to a tremendous amount of work by individuals across the globe, there are now multiple ways for R users to utilize various well-known JavaScript visualization libraries while having little to no knowledge of the JavaScript language itself. Packages such as `rCharts` and `dygraphs` take user-provided R code and translate it to JavaScript code in order to leverage the relevant charting libraries. The benefit of using these packages as opposed to `ggplot2` with `ggiraph` is that they offer a much higher degree of interactivity and user input. However, the downside is that each such package has its own syntax, hence necessitating some investment of time and effort on the part of the analyst before getting started. 
+Due to a tremendous amount of work done by individuals across the globe, there are now multiple ways for R users to utilize various well-known JavaScript visualization libraries while having little to no knowledge of the JavaScript language itself. Packages such as `rCharts` and `dygraphs` take user-provided R code and translate it to JavaScript code in order to leverage the relevant charting libraries. The benefit of using these packages as opposed to `ggplot2` with `ggiraph` is that they offer a much higher degree of interactivity and user input. However, the downside is that each such package has its own syntax, hence necessitating some investment of time and effort on the part of the analyst before getting started. 
 
 ### rCharts 
 
 One package that interfaces with multiple JavaScript libraries is `rCharts`. In the following example, a bar graph (similar to the one created with `ggplot2` above) is being generated. As evidenced by the code below, the syntax is very different from `ggplot2`, albeit still easy to follow. 
 
-```{r, echo=FALSE, results='asis',comment=NA}
+```{r, results='asis',comment=NA}
 
 barUR <- nPlot(x= 'Region', y = 'UnRate', data = monthlyLFS1 %>% filter(Date=="2016-10-01"), 
             type = 'discreteBarChart', dom = 'URPlot') # can pick any date
@@ -162,9 +162,4 @@ dygraph(wideMonthlyLFS1, main = "Unemployment Rate by Region") %>%
 
 ```
 <br>
-The above graph is very busy and unsightly, but the intention is to show the numerous options and the excellent performance of `dygraphs` for graphing large time series datasets. The package supports multiple timeseries, event-shading, pinch-to-zoom, horizontal scrolling etc. All of the options can be modified depending on the specific use case.  
-
-In addition, it is once again worth pointing out that even though `dygraphs` has a fairly consistent and easy-to-follow syntax, it is nonetheless different than the other packages showcased thus far. 
-
-
-
+The above graph is very busy and unsightly, but the intention is to show the numerous options and the excellent performance of `dygraphs` for graphing large time series datasets. The package supports multiple options such as event-shading, pinch-to-zoom, horizontal scrolling etc. All of the options can be modified depending on the specific use case.  

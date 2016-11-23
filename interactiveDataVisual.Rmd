@@ -65,6 +65,8 @@ rownames(monthlyLFS1) <- c()
 ```{r}
 head(monthlyLFS1)
 ```
+<br>
+To learn more about `CANSIM2R`, please visit the following [link](https://cran.r-project.org/web/packages/CANSIM2R/index.html).
 
 ## Interactive data visualization with ggplot2
 
@@ -105,13 +107,20 @@ gg_bar <- ggplot(data=monthlyLFS1 %>% filter(Date == "2016-10-01"),
 ggiraph(code = {print(gg_bar)},  height_svg = 4, width_svg = 6)
 ```
 
-In the example above, tooltips are added to the existing bar chart. The tooltips are used to display the unemployment rate for a given province when the mouse pointer is hovered over a bar. This added functionality requires very little modification to the existing code. `geom_bar` is replaced with `geom_bar_interactive`, and some additonal arguments are added within to specify the values to display while hovering. In addition, the function `ggiraph` is utilized to output the chart.  
+In the example above, tooltips are added to the existing bar chart. The tooltips are used to display the unemployment rate for a given province when the mouse pointer is hovered over a bar. This added functionality requires very little modification to the existing code. `geom_bar` is replaced with `geom_bar_interactive`, and some additonal arguments are added within to specify the values to display while hovering. In addition, the function `ggiraph` is utilized to output the chart.
+
+The official website of `ggplot2` is located [here](http://ggplot2.org/). <br>
+One of many useful resources on `ggplot2` can be found [here](http://www.cookbook-r.com/Graphs/). <br>
+<br>
+To learn more about `ggiraph`, please visit the following [link](http://davidgohel.github.io/ggiraph/).
 
 ## Interactive data visualization with JavaScript libraries
 
 Most dynamic and interactive data visualizations online are produced through JavaScript. There is extensive literature on the subject matter, and new or existing libraries are constantly under development. 
 
 Due to a tremendous amount of work done by individuals across the globe, there are now multiple ways for R users to utilize various well-known JavaScript visualization libraries while having little to no knowledge of the JavaScript language itself. Packages such as `rCharts` and `dygraphs` take user-provided R code and translate it to JavaScript code in order to leverage the relevant charting libraries. The benefit of using these packages as opposed to `ggplot2` with `ggiraph` is that they offer a much higher degree of interactivity and user input. However, the downside is that each such package has its own syntax, hence necessitating some investment of time and effort on the part of the analyst before getting started. 
+
+To learn more about all of the JavaScript libraries that have been imported to R, please visit the following [link](http://www.htmlwidgets.org/).
 
 ### rCharts 
 
@@ -129,6 +138,9 @@ barUR$print('iframesrc', include_assets = TRUE)
 ```
 
 `rCharts` has the ability to interface with multiple JavaScript libraries. In the example above, the specific library being utilized is `nvd3`, which is among the most extensive JavaScript libraries currently in use. In general, these libraries offer a vast array of options that determine the nature of interactivity with the resultant graphs/charts. 
+
+To learn more about `rCharts`, please visit the following [link](http://ramnathv.github.io/rCharts/). <br>
+More examples specific to `nvd3` in `rCharts` can be found [here](http://ramnathv.github.io/posts/rcharts-nvd3/).
 
 ### Dygraphs
 
@@ -162,4 +174,6 @@ dygraph(wideMonthlyLFS1, main = "Unemployment Rate by Region") %>%
 
 ```
 <br>
-The above graph is very busy and unsightly, but the intention is to show the numerous options and the excellent performance of `dygraphs` for graphing large time series datasets. The package supports multiple options such as event-shading, pinch-to-zoom, horizontal scrolling etc. All of the options can be modified depending on the specific use case.  
+The above graph is very busy and unsightly, but the intention is to show the numerous options and the excellent performance of `dygraphs` for graphing large time series datasets. The package supports multiple options such as event-shading, pinch-to-zoom, horizontal scrolling etc. All of the options can be modified depending on the specific use case.
+
+To learn more about `dygraphs`, please visit the following [link](https://rstudio.github.io/dygraphs/).

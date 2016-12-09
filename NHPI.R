@@ -11,12 +11,13 @@ library("scales")
 library("dplyr")
 #
 # set working directory
-setwd("J:/BCSTATS/INFOLINE/Infoline_2016-11-10_NHPI")
+#setwd("J:/BCSTATS/INFOLINE/Infoline_2016-11-10_NHPI")
+setwd("C:/@data/GitHub/CANSIM-data-viewer")
 #
 # read the data
 # -- file 03270046-eng.csv download of CANSIM table 327-0046
 # -- http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=3270046&&pattern=&stByVal=1&p1=1&p2=1&tabMode=dataTable&csid=
-thedata <- read_csv("03270046-eng.csv")
+thedata <- read_csv("data/03270046-eng.csv")
 
 
 # fix dates
@@ -93,9 +94,11 @@ dataplot2 +
 
 # final version
 # add titles / X-Y axis labels / caption
-dataplot2 +
+NHPI_plot <- dataplot2 +
   labs(title = "New Housing Price Index, Canada & B.C.",
        subtitle = "Total (house and land)",
        caption = "Source: Statistics Canada, CANSIM table 327-0046", 
        x = NULL, y = "NHPI (2007 = 100)") 
 
+ggsave(filename = "NHPI_plot.png", plot = NHPI_plot,
+       width = 8, height = 6)
